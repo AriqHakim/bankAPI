@@ -1,0 +1,647 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "RESTFul API sederhana dengan kasus perbankan yang dibangun dengan Typescript, Express, NodeJS yang terhubung dengan postgreSQL",
+        "version": "1.0.0",
+        "title": "Bank API",
+        "contact": {
+            "email": "ariq.hakim2002@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        }
+    },
+    "schemes": ["http", "https"],
+    "host": "localhost:5000",
+    "basePath": "/",
+    "tags": [
+        {
+            "name": "clients",
+            "description": "Everything about your clients"
+        },
+        {
+            "name": "bankers",
+            "description": "Everything about your bankers"
+        },
+        {
+            "name": "transactions",
+            "description": "Everything about transaction that happen"
+        }
+    ],
+    "paths" : {
+        "/client" : {
+            "get" : {
+                "summary" : "Get all the clients",
+                "description": "Get all the clients",
+                "tags": ["clients"],
+                "produces": ["application/json"],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/client"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            },
+            "post" : {
+                "summary" : "create a client",
+                "description": "create a client",
+                "tags": ["clients"],
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "client object",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/clientBody"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "client created",
+                        "schema": {
+                            "type": "array"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/client/{id}" : {
+            "get" : {
+                "summary" : "Get client by ID",
+                "description": "Get client by ID",
+                "tags": ["clients"],
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Get client by ID",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/client"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            },
+            "delete" : {
+                "summary" : "delete a client",
+                "description": "delete a client",
+                "tags": ["clients"],
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "delete client by ID",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": " client deleted"
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            },
+            "put" : {
+                "summary" : "update a client",
+                "description": "update a client",
+                "tags": ["clients"],
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "uddate client by ID",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "client object",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/clientBody"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": " client updated",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/client"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/banker" : {
+            "get" : {
+                "summary" : "Get all the bankers",
+                "description": "Get all the bankers",
+                "tags": ["bankers"],
+                "produces": ["application/json"],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/client"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            },
+            "post" : {
+                "summary" : "create a banker",
+                "description": "create a banker",
+                "tags": ["bankers"],
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "banker object",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/bankerBody"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "banker created",
+                        "schema": {
+                            "type": "array"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/banker/{id}" : {
+            "get" : {
+                "summary" : "Get banker by ID",
+                "description": "Get banker by ID",
+                "tags": ["bankers"],
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Get banker by ID",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/banker"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            },
+            "delete" : {
+                "summary" : "delete a banker",
+                "description": "delete a banker",
+                "tags": ["bankers"],
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "delete banker by ID",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": " banker deleted"
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            },
+            "put" : {
+                "summary" : "update a banker",
+                "description": "update a banker",
+                "tags": ["bankers"],
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "update banker by ID",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "banker object",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/bankerBody"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": " banker updated",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/banker"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/client/{clientId}/transaction" : {
+            "get" : {
+                "summary" : "Get transaction that done by clientID",
+                "description": "Get transaction that done by clientID",
+                "tags": ["transactions", "clients"],
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "clientId",
+                        "in": "path",
+                        "description": "ID client",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/transactionBody"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            },
+            "post" : {
+                "summary" : "create a transaction",
+                "description": "create a transaction",
+                "tags": ["transactions", "clients"],
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "clientId",
+                        "in": "path",
+                        "description": "ID client",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "transaction object",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/transactionBody"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "transaction created",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/transactionBody"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/client/{clientId}/transaction/{transactionId}" : {
+            "get" : {
+                "summary" : "Get transactionID that done by clientID",
+                "description": "Get transactionID that done by clientID",
+                "tags": ["transactions", "clients"],
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "clientId",
+                        "in": "path",
+                        "description": "ID client",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "transactionId",
+                        "in": "path",
+                        "description": "ID transaction",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/transactionBody"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        }
+    }, 
+    "definitions": {
+        "client": {
+            "type": "object",
+            "properties": {
+                "id": {
+                     "type": "integer"
+                },
+                "first_name": {
+                    "type": "string"
+                },
+                "last_name": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "card_number": {
+                    "type": "string"
+                },
+                "balance": {
+                    "type": "number"
+                },
+                "is_active": {
+                    "type": "boolean"
+                },
+                "additional_info": {
+                    "type": "object",
+                    "properties": {
+                        "hair_color": {
+                            "type": "string"
+                        },
+                        "age": {
+                            "type": "number"
+                        }
+                    }
+                },
+                "familiy_member": {
+                    "type": "array"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            }
+        },
+        "clientBody": {
+            "type": "object",
+            "properties": {
+                "firstName": {
+                    "type": "string"
+                },
+                "lastName": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "cardNumber": {
+                    "type": "string"
+                },
+                "balance": {
+                    "type": "number"
+                },
+                "isActive": {
+                    "type": "boolean"
+                },
+                "additionalInfo": {
+                    "type": "object",
+                    "properties": {
+                        "hair_color": {
+                            "type": "string"
+                        },
+                        "age": {
+                            "type": "number"
+                        }
+                    }
+                },
+                "familiyMember": {
+                    "type": "array"
+                }
+            }
+        },
+        "banker": {
+            "type": "object",
+            "properties": {
+                "id": {
+                     "type": "integer"
+                },
+                "first_name": {
+                    "type": "string"
+                },
+                "last_name": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "card_number": {
+                    "type": "string"
+                },
+                "employee_umber": {
+                    "type": "string"
+                },
+                "clients": {
+                    "type": "number"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            }
+        },
+        "bankerBody": {
+            "type": "object",
+            "properties": {
+                "firstName": {
+                    "type": "string"
+                },
+                "lastName": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "cardNumber": {
+                    "type": "string"
+                },
+                "employeeNumber": {
+                    "type": "string"
+                }
+            }
+        },
+        "transaction": {
+            "type": "object",
+            "properties": {
+                "id": {
+                     "type": "integer"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "amount": {
+                    "type": "number"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                },
+                "client_id": {
+                    "type": "number"
+                }
+            }
+        },
+        "transactionBody": {
+            "type": "object",
+            "properties": {
+               "type": {
+                   "type": "string"
+               },
+               "amount": {
+                   "type": "number"
+               }
+            }
+        },
+        "InvalidResponse": {
+            "type": "object",
+            "properties": {
+                "statusCode": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
