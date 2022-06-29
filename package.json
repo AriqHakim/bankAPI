@@ -5,6 +5,7 @@
   "main": "index.ts",
   "scripts": {
     "dev": "nodemon src/index.ts",
+    "migration:up": "./node_modules/.bin/ts-node ./node_modules/.bin/typeorm migration:run -d src/database.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
