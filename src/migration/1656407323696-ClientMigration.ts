@@ -68,6 +68,6 @@ export class ClientMigration1656407323696 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable("teller");
+    await queryRunner.dropTable("client");
   }
 }
