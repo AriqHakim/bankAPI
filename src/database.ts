@@ -8,6 +8,7 @@ const { Banker } = require("./entities/banker");
 const { Client } = require("./entities/client");
 const { Transaction } = require("./entities/transaction");
 import {
+  HOST,
   DB_PORT,
   DB_USERNAME,
   DB_PASSWORD,
@@ -16,14 +17,13 @@ import {
 
 const database = new DataSource({
   type: "postgres",
-  host: "localhost",
+  host: HOST,
   port: DB_PORT,
   username: DB_USERNAME,
   password: DB_PASSWORD,
   database: DB_NAME,
   entities: [Client, Banker, Transaction],
-  migrations: [`.src/migration/*.ts`],
-  migrationsTableName: "teller",
+  migrations: ["./src/migration/*.ts"],
   synchronize: false,
 });
 

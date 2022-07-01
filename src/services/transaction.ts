@@ -20,10 +20,12 @@ class TransactionServices {
     });
     await transaction.save();
 
-    if (bodyParams.type === TransactionTypes.DEPOSIT) {
-      client.balance += bodyParams.amount;
-    } else if (bodyParams.type === TransactionTypes.WITHDRAW) {
-      client.balance -= bodyParams.amount;
+    if (typeof client.balance == "string") {
+      if (bodyParams.type === TransactionTypes.DEPOSIT) {
+        client.balance = parseFloat(client.balance) + bodyParams.amount;
+      } else if (bodyParams.type === TransactionTypes.WITHDRAW) {
+        client.balance = parseFloat(client.balance) - bodyParams.amount;
+      }
     }
 
     await client.save();

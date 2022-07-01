@@ -1,4 +1,3 @@
-import database from "../database";
 import { Banker } from "../entities/banker";
 import { Client } from "../entities/client";
 

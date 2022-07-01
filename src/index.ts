@@ -6,7 +6,7 @@ import bankersRouter from "./routes/bankers";
 import swaggerUi from "swagger-ui-express";
 import fs from "fs";
 import cors from "cors";
-import { PORT } from "./config";
+import { HOST, PORT } from "./config";
 
 const app: Express = express();
 
@@ -27,7 +27,7 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.listen(PORT, () => {
-  console.log(`Server is running on port : http://localhost:${PORT}`);
+  console.log(`Server is running on port : http://${HOST}:${PORT}`);
 });
 
 app.get("/", (req: express.Request, res: express.Response) => {
