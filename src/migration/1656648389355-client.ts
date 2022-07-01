@@ -1,6 +1,6 @@
 import { MigrationInterface, QueryRunner, Table } from "typeorm";
 
-export class ClientMigration1656407323696 implements MigrationInterface {
+export class client1656648389355 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
@@ -10,23 +10,26 @@ export class ClientMigration1656407323696 implements MigrationInterface {
             name: "id",
             type: "int",
             isPrimary: true,
+            isGenerated: true,
+            generationStrategy: "increment",
           },
           {
             name: "first_name",
-            type: "varchar",
+            type: "character varying",
           },
           {
             name: "last_name",
-            type: "varchar",
+            type: "character varying",
           },
           {
             name: "email",
-            type: "varchar",
+            type: "character varying",
             isUnique: true,
           },
           {
-            name: "card-number",
-            type: "varchar",
+            name: "card_number",
+            type: "character varying",
+            length: "10",
             isUnique: true,
           },
           {
@@ -40,17 +43,14 @@ export class ClientMigration1656407323696 implements MigrationInterface {
           },
           {
             name: "additional_info",
-            type: "simple-json",
-            // value: {
-            //   age: "number",
-            //   hair_color: "string";
-            // },
+            type: "json",
             isNullable: true,
           },
           {
             name: "family_member",
-            type: "string",
+            type: "character varying",
             isArray: true,
+            isNullable: true,
           },
           {
             name: "created_at",
@@ -63,7 +63,8 @@ export class ClientMigration1656407323696 implements MigrationInterface {
             default: "now()",
           },
         ],
-      })
+      }),
+      true
     );
   }
 
